@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Movement : MonoBehaviour
+public class Mover : MonoBehaviour
 {
     [SerializeField] private float _speed = 1f;
 
@@ -11,6 +11,6 @@ public class Movement : MonoBehaviour
 
     private void Move()
     {
-        transform.Translate(Vector3.forward * _speed * Time.deltaTime);
+        transform.Translate(transform.forward * _speed * Time.deltaTime);
     }
 }
