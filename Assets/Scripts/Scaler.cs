@@ -1,16 +1,22 @@
 using UnityEngine;
+using DG.Tweening;
 
 public class Scaler : MonoBehaviour
 {
-    [SerializeField] private float _scaleSpeed = 1f;
+    [SerializeField] private Vector3 _endScale;
+    [SerializeField] private float _duration = 1f;
 
-    private void Update()
+    private Tween _tween;
+    private int _loops = -1;
+
+    private void Start()
     {
         Scale();
     }
 
     private void Scale()
     {
-        transform.localScale += Vector3.one * _scaleSpeed * Time.deltaTime;
+        _tween = transform.DOScale(_endScale, _duration).SetLoops(_loops, LoopType.Yoyo);
+        _tween.SetEase(Ease.InCubic);
     }
 }

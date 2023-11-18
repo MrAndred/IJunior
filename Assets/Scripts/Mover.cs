@@ -1,16 +1,22 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class Mover : MonoBehaviour
 {
-    [SerializeField] private float _speed = 1f;
+    [SerializeField] private Vector3 _endPosition;
+    [SerializeField] private float _duration = 1f;
 
-    private void Update()
+    private int _loops = -1;
+    private Tween _tween;
+
+    private void Start()
     {
         Move();
     }
 
     private void Move()
     {
-        transform.Translate(transform.forward * _speed * Time.deltaTime);
+        _tween = transform.DOMove(_endPosition, _duration).SetLoops(_loops, LoopType.Yoyo);
+        _tween.SetEase(Ease.Linear);
     }
 }
